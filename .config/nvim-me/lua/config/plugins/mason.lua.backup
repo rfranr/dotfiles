@@ -1,0 +1,67 @@
+return {
+       {
+         'VonHeikemen/lsp-zero.nvim',
+         branch = 'main',
+         dependencies = {
+             -- LSP Support
+             {'neovim/nvim-lspconfig'},             -- Required
+             {'williamboman/mason.nvim'},           -- Optional
+             {'williamboman/mason-lspconfig.nvim'}, -- Optional
+ 
+             -- Autocompletion
+             {'hrsh7th/nvim-cmp'},         -- Required
+             {'hrsh7th/cmp-nvim-lsp'},     -- Required
+             {'hrsh7th/cmp-buffer'},       -- Optional
+             {'hrsh7th/cmp-path'},         -- Optional
+             {'saadparwaiz1/cmp_luasnip'}, -- Optional
+             {'hrsh7th/cmp-nvim-lua'},     -- Optional
+ 
+             -- Snippets
+             {'L3MON4D3/LuaSnip'},             -- Required
+             {'rafamadriz/friendly-snippets'}, -- Optional
+         }
+     },
+ 
+ 
+ 
+   {
+     "williamboman/mason.nvim",
+     dependencies = {
+       "neovim/nvim-lspconfig",
+       "williamboman/mason-lspconfig.nvim",
+     },
+     config = function()
+       require('mason').setup()
+       require("mason-lspconfig").setup()
+
+       local lspconfig = require("lspconfig")
+       
+       require("mason-lspconfig").setup_handlers({
+         -- Default handler for all servers
+         function(server_name)
+           lspconfig[server_name].setup({
+             capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+       
+             -- Enable semantic highlighting if supported by the server
+             on_attach = function(client, bufnr)
+               if client.server_capabilities.semanticTokensProvider then
+                 vim.lsp.semantic_tokens.start(bufnr)
+               end
+             end,
+           })
+         end,
+      })
+       
+         -- You can also do custom setup per server if needed
+         -- Example:
+         -- ['tsserver'] = function()
+         --   lspconfig.tsserver.setup({
+         --     -- your custom tsserver config here
+         --   })
+         -- end,
+
+
+     end
+   }
+ }
+

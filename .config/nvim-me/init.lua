@@ -1,0 +1,5 @@
+require("config.settings")
+require("config.lazy")
+require("config.which-key-config")
+require("config.tabnine-config")
+require("config.cycle-matches")
