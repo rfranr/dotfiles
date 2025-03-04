@@ -152,6 +152,7 @@ export BASH_IT="/home/rfranr/.bash_it"
 # Leave empty to disable theming.
 # location /.bash_it/themes/
 export BASH_IT_THEME='powerline-multiline'
+#export BASH_IT_THEME='90120'
 
 # Some themes can show whether `sudo` has a current token or not.
 # Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
@@ -228,3 +229,10 @@ export PATH="$HOME/.local/nvim/nvim-linux-x86_64.appimage-fs/usr/bin:$PATH"
 
 ######### dotfiles repo
 alias dotfiles="git --git-dir=$HOME/source/01-rfranr/dotfiles --work-tree=$HOME"
+
+######### fdfind
+alias fd=fdfind
+
+######### user scripts
+export PATH="$HOME/.scripts:$PATH"
+

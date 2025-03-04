@@ -5,4 +5,10 @@ if status is-interactive
 	
 	#dotfiles
 	alias dotfiles="git --git-dir=$HOME/source/01-rfranr/dotfiles --work-tree=$HOME"
+	######### fdfind
+	alias fd=fdfind
+
+  ######### user scripts
+  export PATH="$HOME/.scripts:$PATH"
+
 end
